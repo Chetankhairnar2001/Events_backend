@@ -9,7 +9,7 @@ public partial class Favorite
 
     public string? Currentusername { get; set; }
 
-    public int? Currentuserid { get; set; }
+    public string? Currentuserid { get; set; }
 
     public int? Eventid { get; set; }
 

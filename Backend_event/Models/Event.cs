@@ -20,7 +20,7 @@ public partial class Event
 
     public string? Username { get; set; }
 
-    public int? Userid { get; set; }
+    public string? Userid { get; set; }
 
     public DateTime? Timestamp { get; set; }
 

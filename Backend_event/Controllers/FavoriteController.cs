@@ -12,7 +12,7 @@ namespace Backend_event.Controllers
         EventDbContext dbContext = new EventDbContext();
 
         [HttpGet("{id}")]
-        public IActionResult GetFavoriteById(int id)
+        public IActionResult GetFavoriteById(string id)
         {
             var result = dbContext.Favorites.Where(f => f.Currentuserid == id).Include(f => f.Event).ToList();
             return Ok(result);
