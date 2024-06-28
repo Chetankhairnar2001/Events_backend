@@ -48,7 +48,7 @@ namespace Backend_event.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteEvent(int id)
+        public IActionResult DeleteFavorite(int id)
         {
             Favorite result = dbContext.Favorites.Find(id);
             if (result == null)
