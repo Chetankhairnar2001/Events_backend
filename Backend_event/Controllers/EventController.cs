@@ -18,10 +18,20 @@ namespace Backend_event.Controllers
             return Ok(result);
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id) { 
+            Event result = dbContext.Events.Find(id);
+            if (result == null) { 
+                return NoContent();
+            }   
+            return Ok(result);
+        }
+
         [HttpPost()]
         public IActionResult AddEvent([FromBody] Event newEvent)
         {
             newEvent.Id = 0;
+            newEvent.Timestamp = DateTime.Now;
             dbContext.Events.Add(newEvent);
             dbContext.SaveChanges();
             return Created($"api/Event/{newEvent.Id}", newEvent);
