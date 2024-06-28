@@ -47,6 +47,19 @@ namespace Backend_event.Controllers
             return Created($"api/Favorite/{newFavorite.Id}", newFavorite);
         }
 
+        [HttpDelete("{id}")]
+        public IActionResult DeleteEvent(int id)
+        {
+            Favorite result = dbContext.Favorites.Find(id);
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            dbContext.Favorites.Remove(result);
+            dbContext.SaveChanges();
+            return NoContent();
+        }
 
     }
 }
