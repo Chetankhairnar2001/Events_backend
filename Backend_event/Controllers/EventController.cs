@@ -55,6 +55,9 @@ namespace Backend_event.Controllers
                 return NotFound();
             }
 
+            List<Favorite> favoriteList = dbContext.Favorites.Where(x => x.Eventid == id).ToList();
+            dbContext.Favorites.RemoveRange(favoriteList);
+
             dbContext.Events.Remove(result);
             dbContext.SaveChanges();
             return NoContent();
