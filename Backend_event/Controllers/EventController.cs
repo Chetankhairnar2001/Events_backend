@@ -12,9 +12,18 @@ namespace Backend_event.Controllers
         EventDbContext dbContext = new EventDbContext();
 
         [HttpGet()]
-        public IActionResult GetAll()
+        public IActionResult GetAll(string? type = null, string? eventname = null)
         {
-            List<Event> result = dbContext.Events.ToList();
+            List<Event> result = dbContext.Events.OrderBy(t=>t.Type).ThenBy(d => d.EventDate).ToList();
+
+            if(type != null)
+            {
+                result = result.Where(e => e.Type.ToLower().Contains(type.ToLower())).ToList();
+            }
+            if(eventname != null)
+            {
+                result = result.Where(x => x.Eventname.ToLower().Contains(eventname.ToLower())).ToList();
+            }
             return Ok(result);
         }
 
